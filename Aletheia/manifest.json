@@ -1,0 +1,26 @@
+{
+    "name": "Alethia",
+    "version": "1.0",
+    "description": "Truth Liberated",
+    "permissions": ["activeTab", "declarativeContent", "storage"],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+      },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/aletheia16.png",
+            "32": "icons/aletheia32.png",
+            "48": "icons/aletheia48.png",
+            "128": "icons/aletheia128.png"
+          }
+      },
+    "icons": {
+    "16": "icons/aletheia16.png",
+    "32": "icons/aletheia32.png",
+    "48": "icons/aletheia48.png",
+    "128": "icons/aletheia128.png"
+    },
+    "manifest_version": 2
+  }
