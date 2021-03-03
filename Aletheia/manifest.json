@@ -2,7 +2,7 @@
     "name": "Alethia",
     "version": "1.0",
     "description": "Truth Liberated",
-    "permissions": ["activeTab", "declarativeContent", "storage"],
+    "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "<all_urls>"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
