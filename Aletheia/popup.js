@@ -5,8 +5,8 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   });
   
  document.addEventListener('DOMContentLoaded', function(){
-   var test = document.getElementById("test");
-   test.addEventListener('click', function(){
+   var read = document.getElementById("read");
+   read.addEventListener('click', function(){
     var message = document.querySelector('#message');
     // toggles text on
     message.innerHTML = "Reading document";

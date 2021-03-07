@@ -2,4 +2,15 @@ body{
     background-color: black;
     color: white;
     width: 500px;
-  }
+}
+#button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#read{
+  transition: 0.3s;
+}
+#read:hover{
+  background-color: rgb(236, 192, 134);
+}

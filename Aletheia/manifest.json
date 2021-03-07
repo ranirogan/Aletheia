@@ -1,27 +1,27 @@
 {
-    "name": "Alethia",
-    "version": "1.0",
-    "description": "Truth Liberated",
-    "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "contextMenus"],
-    "background": {
-        "service_worker": "background.js"
-      },
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "16": "icons/aletheia16.png",
-            "32": "icons/aletheia32.png",
-            "48": "icons/aletheia48.png",
-            "128": "icons/aletheia128.png"
-          },
-          "default_title": "Aletheia"
-      },
-    "icons": {
-    "16": "icons/aletheia16.png",
-    "32": "icons/aletheia32.png",
-    "48": "icons/aletheia48.png",
-    "128": "icons/aletheia128.png"
+  "name": "Alethia",
+  "version": "1.0",
+  "description": "Truth Liberated",
+  "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "contextMenus"],
+  "background": {
+      "service_worker": "background.js"
     },
-    "options_page": "options.html",
-    "manifest_version": 3
-  }
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+        "16": "icons/aletheia16.png",
+        "32": "icons/aletheia32.png",
+        "48": "icons/aletheia48.png",
+        "128": "icons/aletheia128.png"
+      },
+      "default_title": "Aletheia"
+    },
+  "icons": {
+  "16": "icons/aletheia16.png",
+  "32": "icons/aletheia32.png",
+  "48": "icons/aletheia48.png",
+  "128": "icons/aletheia128.png"
+  },
+  "options_page": "options.html",
+  "manifest_version": 3
+}
