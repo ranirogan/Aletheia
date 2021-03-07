@@ -2,7 +2,7 @@
     "name": "Alethia",
     "version": "1.0",
     "description": "Truth Liberated",
-    "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
+    "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "contextMenus"],
     "background": {
         "service_worker": "background.js"
       },
@@ -22,5 +22,6 @@
     "48": "icons/aletheia48.png",
     "128": "icons/aletheia128.png"
     },
+    "options_page": "options.html",
     "manifest_version": 3
   }
