@@ -1,7 +1,18 @@
+@import "theme.css";
+*{
+  display: flexbox;
+  text-align: center;
+}
 body{
-    background-color: black;
-    color: white;
-    width: 500px;
+  background-color: black;
+  color: white;
+  width: 500px;
+}
+h1{
+  margin-bottom: .5rem;
+}
+p{
+ margin-top: .5rem; 
 }
 #button{
   display: flex;
@@ -12,5 +23,11 @@ body{
   transition: 0.3s;
 }
 #read:hover{
-  background-color: rgb(236, 192, 134);
+  background-color: var(--gold);
+}
+#read:disabled{
+  background-color: darkgray;
+}
+#message{
+  text-align: left;
 }

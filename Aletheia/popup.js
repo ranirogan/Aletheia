@@ -1,12 +1,14 @@
 chrome.runtime.onMessage.addListener(function(request, sender) {
     if (request.action == "getSource") {
       message.innerText = request.source;
-    }
-  });
+  }
+});
   
- document.addEventListener('DOMContentLoaded', function(){
-   var read = document.getElementById("read");
-   read.addEventListener('click', function(){
+document.addEventListener('DOMContentLoaded', function(){
+  var read = document.getElementById("read");
+  read.addEventListener('click', function(){
+    var button = document.getElementById('read')
+    button.disabled = true;
     var message = document.querySelector('#message');
     // toggles text on
     message.innerHTML = "Reading document";
