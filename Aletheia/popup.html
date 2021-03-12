@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-        <title>Aletheia Popup</title>
-        <script src='popup.js'></script>
-        <link rel="stylesheet" href="popup.css">
+    <title>Aletheia Popup</title>
+    <script src='popup.js'></script>
+    <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-    <h1>Welcome to Aletheia!</h1>
-    <p>Click below to start</p>
-    <div id = 'button'>
-      <button id='read'>Read Document</button>
+    <div class="active" id="welcome">
+      <h1>Welcome to Aletheia!</h1>
+      <p>Click below to start</p>
+      <div id = 'button'>
+        <button id='read'>Read Document</button>
+      </div>
+    </div>
+    
+    <div id="digest">
+      <h1>About this Article</h1>
+      <div id="biasDiv">
+        <div class="bias">
+          <h2>Author:</h2>
+          <p>Bias Rating</p>
+        </div>
+        <div class="clear"></div>
+        <div class="bias">
+          <h2>News Site:</h2>
+          <p class="bias">Bias Rating</p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div id="sentiment">
+        <h2>Sentiment:</h2>
+      </div>
+      <div id="keys">
+        <h2>Key Terms:</h2>
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/News">term</a></li>
+        </ul>
+      </div>
+      <div id="related">
+        <h2>Related Articles:</h2>
+        <ul>
+          <li>
+            <a href="https://apnews.com/">Article</a>
+            <ul><li>bias</li></ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <div id='message'></div> 
   </body>

@@ -1,33 +1,83 @@
 @import "theme.css";
 *{
-  display: flexbox;
-  text-align: center;
+  box-sizing: border-box;
+  font-size: 16px;
+  background: var(--blue);
 }
+
 body{
-  background-color: black;
   color: white;
   width: 500px;
 }
+
+body > *{
+  display: none;
+  border: var(--olive) solid 1px;
+}
+
+body > .active{
+  display: block;
+}
+
+h1, h2{
+  color: var(--peach);
+  padding-left: .5rem;
+}
+
 h1{
+  font-size: 2rem;
+}
+
+h2{
+  font-size: 1.5rem;
+}
+
+li > ul{
+  list-style-type: none;
+  padding-left: 0;
+}
+
+a{
+  color: var(--tan);
+}
+
+a:hover{
+  color: var(--brown);
+}
+
+.bias > *{
+  float: left;
+  width: 50%;
+}
+
+#welcome{
   margin-bottom: .5rem;
+  text-align: center;
 }
-p{
- margin-top: .5rem; 
-}
+
 #button{
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #read{
   transition: 0.3s;
+  background: var(--tan);
 }
+
 #read:hover{
-  background-color: var(--gold);
+  background-color: var(--brown);
 }
+
 #read:disabled{
   background-color: darkgray;
 }
+
 #message{
   text-align: left;
+}
+
+.clear{
+  clear: both;
 }

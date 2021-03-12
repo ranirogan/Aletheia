@@ -20,5 +20,9 @@ document.addEventListener('DOMContentLoaded', function(){
         message.innerText = 'Cannot read from extensions. Please try again on a valid page. \n';
       }
     });
+    var digest = document.querySelector("#digest");
+    digest.classList.add("active");
+    var welcome = document.querySelector("#welcome");
+    welcome.classList.remove("active");
   });
 });
