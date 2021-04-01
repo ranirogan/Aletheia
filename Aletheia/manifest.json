@@ -1,5 +1,5 @@
 {
-  "name": "Alethia",
+  "name": "Aletheia",
   "version": "1.0",
   "description": "Truth Liberated",
   "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "contextMenus"],
