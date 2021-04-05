@@ -11,6 +11,7 @@ import spacy
 import requests
 import feedparser
 import urllib.parse
+import functools
 from flask_cors import CORS
 
 # python -m spacy download en_core_web_sm
@@ -24,15 +25,8 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/', methods=['POST'])
-def news():
-    for path in (TOP_DIRECTORY, MEMO_DIR, ANCHOR_DIRECTORY):
-        try:
-            os.mkdir(path)
-        except FileExistsError:
-            pass
-
-    url = request.data.decode('utf-8')
+@functools.lru_cache(maxsize=32)
+def compute(url):
     article = Article(url)
     article.download()
     article.parse()
@@ -85,6 +79,18 @@ def news():
         entities=ents,
         similar=entries
     )
+
+
+@app.route('/', methods=['POST'])
+def news():
+    for path in (TOP_DIRECTORY, MEMO_DIR, ANCHOR_DIRECTORY):
+        try:
+            os.mkdir(path)
+        except FileExistsError:
+            pass
+
+    url = request.data.decode('utf-8')
+    return compute(url)
 
 
 if __name__ == '__main__':
