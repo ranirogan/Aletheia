@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function(){
     message.classList.add("active");
     fetch('http://ec2-18-144-60-190.us-west-1.compute.amazonaws.com:8080/', {
       method: 'POST',
-      mode: 'no-cors',
       body: 'https://apnews.com/article/derek-chauvin-trial-live-updates-c3e3fe08773cd2f012654e782e326f6e'
     })
     .then(function(response) {
+      console.log(response);
       return response.text().then(function(text) {
         message.innerHTML = text;
       });
