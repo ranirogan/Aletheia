@@ -19,11 +19,25 @@ document.addEventListener('DOMContentLoaded', function(){
   read.addEventListener('click', function(){
     var button = document.getElementById('read')
     button.disabled = true;
-    // var message = document.querySelector('#message');
-    // message.classList.add("active");
     var digest = document.querySelector("#digest");
     digest.classList.add("active");
     var welcome = document.querySelector("#welcome");
     welcome.classList.remove("active");
+    var message = document.querySelector('#message');
+    message.classList.add("active");
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+      let url = tabs[0].url;
+      fetch('http://ec2-18-144-60-190.us-west-1.compute.amazonaws.com:8080/', {
+      method: 'POST',
+      body: url
+      })
+      .then(function(response) {
+        console.log(response);
+        return response.text().then(function(text) {
+          message.innerHTML = text;
+        });
+      });
+    });
+    
   });
 });
