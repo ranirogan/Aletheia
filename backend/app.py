@@ -2,12 +2,15 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk import tokenize
 import nltk
 from newspaper import Article
+from newspaper.settings import TOP_DIRECTORY, MEMO_DIR, ANCHOR_DIRECTORY
 from flask import Flask
 from flask import request
 from flask import jsonify
+import os
 import spacy
 import feedparser
 import urllib.parse
+from flask_cors import CORS
 
 # python -m spacy download en_core_web_sm
 nlp = spacy.load("en_core_web_md")
@@ -17,10 +20,17 @@ nltk.download('vader_lexicon')
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/', methods=['POST'])
 def news():
+    for path in (TOP_DIRECTORY, MEMO_DIR, ANCHOR_DIRECTORY):
+        try:
+            os.mkdir(path)
+        except FileExistsError:
+            pass
+
     url = request.data.decode('utf-8')
     article = Article(url)
     article.download()
