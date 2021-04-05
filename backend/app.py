@@ -8,6 +8,7 @@ from flask import request
 from flask import jsonify
 import os
 import spacy
+import requests
 import feedparser
 import urllib.parse
 from flask_cors import CORS
@@ -44,7 +45,18 @@ def news():
 
     parsed = nlp(text)
     ents = [{'text': e.text, 'label': e.label_,
-             'count': text.count(e.text)} for e in parsed.ents]
+             'count': text.count(e.text)} for e in parsed.ents if e.label_ != 'DATE' and e.label_ != 'CARDINAL']
+    ents = list({v['text']: v for v in ents}.values())
+
+    for ent in ents:
+        base = "https://en.wikipedia.org/w/api.php?action=opensearch&search={}&limit=1&namespace=0&format=json".format(
+            ent['text'])
+        resp = requests.get(base)
+        j = resp.json()
+        if len(j[3]) > 0:
+            ent['wiki'] = j[3][0]
+        else:
+            ent['wiki'] = ''
 
     url = "https://news.google.com/rss/search?q={}".format(
         urllib.parse.quote_plus(article.title))
