@@ -2,7 +2,7 @@
   "name": "Aletheia",
   "version": "1.0",
   "description": "Truth Liberated",
-  "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "contextMenus", "<all_urls>", "http://ec2-18-144-60-190.us-west-1.compute.amazonaws.com:8080/"],
+  "permissions": ["activeTab", "declarativeContent", "storage", "tabs", "contextMenus"],
   "background": {
       "service_worker": "background.js"
     },
