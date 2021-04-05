@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function(){
       body: url
       })
       .then(function(response) {
-        console.log(response);
         return response.text().then(function(text) {
           message.innerHTML = text;
         });
