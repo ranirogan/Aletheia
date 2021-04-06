@@ -34,6 +34,8 @@ function getVals(json){
   title.innerHTML = json.title;
   var author = document.getElementById("author");
   author.innerHTML = json.authors;
+  var sum = document.getElementById("summary");
+  sum.innerText = json.summary;
   var sentiment = json.sentiment;
   var sent = document.getElementById("sentiment");
   getSentiment(sent, sentiment);
