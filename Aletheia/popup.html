@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <title>Aletheia Popup</title>
     <script type="module" src='popup.js'></script>
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-    <div class="active" id="welcome">
-      <h1>Welcome to Aletheia!</h1>
-      <p>Click below to start</p>
-      <div id = 'button'>
-        <button id='read'>Read Document</button>
+    <div class="container-fluid active p-2 text-center" id="welcome">
+      <h1 class="display-1">Welcome to Aletheia!</h1>
+      <p class="lead">Click below to start</p>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button id='read' class="btn btn-secondary">Read Document</button>
       </div>
     </div>
     
-    <div id="digest">
-      <h1>About this Article</h1>
-      <h2>Title: </h2> <span id="title"></span>
-      <h2>Author(s): </h2> <span id="author"></span>
-      <h2>Summary: </h2> <span id="summary"></span>
-      <h2>Sentiment:</h2> <span id="sentiment"></span>
-      <h2>Key Terms:</h2>
-      <ul id="keyTerms"></ul>
-      <h2>Related Articles:</h2>
-      <ul id="articles"></ul>
+    <div id="digest" class="container-fluid bg-light">
+      <dl class="row lh-lg">
+        <h1 class="display-6">About this Article</h1>
+        <dt class="col-sm-2">Title: </dt> <dd class="col-sm-10" id="title"></dd>
+        <dt class="col-sm-2">Author(s): </dt> <dd class="col-sm-10" id="author"></dd>
+        <dt class="col-sm-2">Summary: </dt> <dd class="col-sm-10" id="summary"></dd>
+        <dt class="col-sm-2"><abbr title="This tells you how positive, negative, or neutral an article is">
+          Sentiment:</abbr></dt> 
+          <dd class="col-sm-10"><div class="progress" id="sentiment"></div></dd>
+        <dt class="col-sm-2">Key Terms:</dt>
+          <dd class="col-sm-10"><div id="keyTerms" class="list-group"></div></dd>
+        <dt class="col-sm-2">Related Articles:</dt>
+         <dd class="col-sm-10"><div id="articles" class="list-group"></div></dd>
+      </dl>
     </div>
     <div id='message'>
       Getting source...
