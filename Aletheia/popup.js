@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function(){
     button.disabled = true;
     var message = document.querySelector('#message');
     message.classList.add("active");
+    message.setAttribute("style", "display: block");
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
       let url = tabs[0].url;
       fetch('http://ec2-18-144-60-190.us-west-1.compute.amazonaws.com:8080/', {
