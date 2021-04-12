@@ -25,12 +25,35 @@
         <p>The "sentiment" of an article is based off of the language that the author uses. 
             When words have strong negative connotations, then they increase the negative setiment score. 
             Likewise, the more positive the connotation of a word, the more positive the sentiment score.</p>
-        <p>Below is an example sentiment scale. The negative sentiment is marked red, the positive sentiment 
-            is marked green, and the neutral sentiment is gray.</p>
+        <p>Below is an example sentiment scale. The negative sentiment is marked red, and the positive sentiment 
+            is marked green.</p>
         <div class="progress col-6 mx-auto">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">Negative Sentiment</div>
-            <div class="progress-bar bg-secondary" role="progressbar" style="width: 50%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">Neutral Sentiment</div>
-            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Positive Sentiment</div>
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="15" 
+            aria-valuemin="0" aria-valuemax="100">Negative Sentiment</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 40%" aria-valuenow="20" 
+            aria-valuemin="0" aria-valuemax="100">Positive Sentiment</div>
+        </div>
+        <p>Articles are classified according to the following scale:</p>
+        <ul>
+            <li>>80% negativity: <span class="text-danger">Extremely negative</span></li>
+            <li>>60% negativity: <span class="text-danger">Negative</span></li>
+            <li>40-50% positivity or negativity: <span class="text-secondary">Neutral</span></li>
+            <li>>60% positivity: <span class="text-success">Positive</span></li>
+            <li>>80% positivity: <span class="text-success">Extremely positive</span></li>
+            <li>No positive or negative rating: <span class="text-secondary">Completely Neutral</span></li>
+        </ul>
+        <div class="progress col-6 mx-auto">
+            <div class="progress-bar" role="progressbar" style="width: 20%; background-color: darkgreen;" aria-valuenow="20" 
+            aria-valuemin="0" aria-valuemax="100">Extremely Positive</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" 
+            aria-valuemin="0" aria-valuemax="100">Positive</div>
+            <div class="progress-bar bg-secondary" role="progressbar" style="width: 20%" aria-valuenow="15" 
+            aria-valuemin="0" aria-valuemax="100">Neutral</div>
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" 
+            aria-valuemin="0" aria-valuemax="100">Negative</div>
+            <div class="progress-bar" role="progressbar" style="width: 20%; background-color: darkred;" aria-valuenow="20" 
+            aria-valuemin="0" aria-valuemax="100">Extremely Negative</div>
+            
         </div>
         <p class="lead">Key Terms</p>
         <p>This is an auto generated list of terms from the article. Each term links to a wikipedia page.</p>
