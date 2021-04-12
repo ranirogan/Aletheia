@@ -1,82 +1,25 @@
-@import "theme.css";
-*{
-  box-sizing: border-box;
-  font-size: 16px;
-  background: var(--blue) ;
-}
-
 body{
-  width: 500px;
+  width: 700px;
 }
 
 body > *{
   display: none;
-  border: var(--olive) solid 1px;
 }
 
 body > .active{
   display: block;
-}
+} 
 
-h1, h2{
-  color: white;
-  padding-left: .5rem;
-}
-
-h1{
-  font-size: 2rem;
-}
-
-h2{
-  font-size: 1.5rem;
-}
-
-li > ul{
-  list-style-type: none;
-  padding-left: 0;
+dt{
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 a{
-  color: var(--tan);
+  text-decoration: none;
+  color: black;
 }
 
-a:hover{
-  color: var(--brown);
-}
-
-.bias > *{
-  float: left;
-  width: 50%;
-}
-
-#welcome{
-  margin-bottom: .5rem;
-  text-align: center;
-}
-
-#button{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#read{
-  transition: 0.3s;
-  background: var(--tan);
-}
-
-#read:hover{
-  background-color: var(--brown);
-}
-
-#read:disabled{
-  background-color: darkgray;
-}
-
-#message{
-  text-align: left;
-}
-
-.clear{
-  clear: both;
+#sentiment{
+  margin-top: 10px;
 }

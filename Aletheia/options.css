@@ -1,9 +1,2 @@
 @import "theme.css";
-*{
-    background: var(--blue);
-    color: white;
-}
 
-h1, h2{
-    text-align: center;
-}
