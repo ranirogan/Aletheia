@@ -3,10 +3,6 @@ document.addEventListener('DOMContentLoaded', function(){
   read.addEventListener('click', function(){
     var button = document.getElementById('read')
     button.disabled = true;
-    var digest = document.querySelector("#digest");
-    digest.classList.add("active");
-    var welcome = document.querySelector("#welcome");
-    welcome.classList.remove("active");
     var message = document.querySelector('#message');
     message.classList.add("active");
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
@@ -42,6 +38,10 @@ function getVals(json){
   activateLinks(articles);
   var message = document.querySelector('#message');
   message.classList.remove("active");
+  var digest = document.querySelector("#digest");
+  digest.classList.add("active");
+  var welcome = document.querySelector("#welcome");
+  welcome.classList.remove("active");
 }
 
 function getEntities(entities){
