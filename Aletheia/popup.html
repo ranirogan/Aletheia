@@ -7,33 +7,51 @@
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-    <div class="container-fluid active p-2 text-center" id="welcome">
+    <div class="container-fluid active p-2 text-center border border-warning border-3" id="welcome">
       <h1 class="display-1">Welcome to Aletheia!</h1>
-      <p class="lead">Click below to start</p>
       <div class="d-grid gap-2 col-6 mx-auto">
-        <button id='read' class="btn btn-secondary">Read Document</button>
+        <button id='read' class="btn btn-warning">Analyze Article</button>
       </div>
+      <div id='message' class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div> 
     </div>
     
-    <div id="digest" class="container-fluid bg-light">
-      <dl class="row lh-lg">
-        <h1 class="display-6">About this Article</h1>
-        <dt class="col-sm-2">Title: </dt> <dd class="col-sm-10" id="title"></dd>
-        <dt class="col-sm-2">Author(s): </dt> <dd class="col-sm-10" id="author"></dd>
-        <dt class="col-sm-2">Summary: </dt> <dd class="col-sm-10" id="summary"></dd>
-        <dt class="col-sm-2"><abbr title="This tells you how positive, negative, or neutral an article is">
-          Sentiment:</abbr></dt> 
-          <dd class="col-sm-10"><div class="progress" id="sentiment"></div></dd>
-        <dt class="col-sm-2">Key Terms:</dt>
-          <dd class="col-sm-10"><div id="keyTerms" class="list-group"></div></dd>
-        <dt class="col-sm-2">Related Articles:</dt>
-         <dd class="col-sm-10"><div id="articles" class="list-group"></div></dd>
-      </dl>
-    </div>
-    <div id='message' class="text-center">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+    <div id="digest" class="container-fluid bg-warning">
+      <div class="row">
+        <h5 class="card-title">Article Analysis</h1>
       </div>
-    </div> 
+      <div class="card">
+        <h5 class="card-header" id="title"></h5>
+        <div class="row">
+          <dt class="col-sm-2">Author(s): </dt>
+          <dd class="col-sm-10" id="author"></dd>
+        </div>
+        <div class="row">
+          <dt class="col-sm-2">Summary: </dt> 
+          <dd class="col-sm-10 overflow-auto min-vh-50" id="summary"></dd>
+        </div>
+        <div class="row">
+          <dt class="col-sm-2"><abbr title="This tells you how positive, negative, or neutral an article is">
+            Sentiment:</abbr></dt> 
+            <dd class="col-sm-10"><div class="progress" id="sentiment"></div></dd>
+        </div>
+            <!-- <dt class="col-sm-2">Key Terms:</dt>
+            <dd class="col-sm-10"><div id="keyTerms" class="list-group"></div></dd>
+          <dt class="col-sm-2">Related Articles:</dt>
+           <dd class="col-sm-10"><div id="articles" class="list-group"></div></dd> -->
+        <div class="card- row">
+          <div class="d-grid gap-2 col col-6 mx-auto">
+            <button id='keyterms' class="btn btn-secondary">Key Terms</button>
+          </div>
+          <div class="d-grid gap-2 col col-6 mx-auto">
+            <button id='related' class="btn btn-secondary">Related Articles</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
   </body>
 </html>
