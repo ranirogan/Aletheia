@@ -7,15 +7,18 @@ document.addEventListener('DOMContentLoaded', function(){
     message.classList.add("active");
     message.setAttribute("style", "display: block");
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-      let url = tabs[0].url;
-      fetch('http://ec2-18-144-60-190.us-west-1.compute.amazonaws.com:8080/', {
-      method: 'POST',
-      body: url
-    })
-      .then(function(response) {
-        return response.json().then(json => getVals(json))
-      });
-    });
+      if(tabs.length == 0)
+        message.innerText= "Cannot read from extension pages. Please try again from a valid page.";
+      else{
+        let url = tabs[0].url;
+        fetch('http://ec2-18-144-60-190.us-west-1.compute.amazonaws.com:8080/', {
+        method: 'POST',
+        body: url
+        }).then(function(response) {
+            return response.json().then(json => getVals(json))
+          });
+      }
+    }); 
   });
 });
 
@@ -29,14 +32,14 @@ function getVals(json){
   var sentiment = json.sentiment;
   var sent = document.getElementById("sentiment");
   getSentiment(sent, sentiment);
-  // var entities = json.entities;
-  // getEntities(entities);
-  // var similar = json.similar;
-  // getSimilar(similar);
-  // var keyTerms = document.getElementById("keyTerms");
-  // activateLinks(keyTerms);
-  // var articles = document.getElementById("articles");
-  // activateLinks(articles);
+  var entities = json.entities;
+  getEntities(entities);
+  var similar = json.similar;
+  getSimilar(similar);
+  var keyTerms = document.getElementById("keyTerms");
+  activateLinks(keyTerms);
+  var articles = document.getElementById("articles");
+  activateLinks(articles);
   var message = document.querySelector('#message');
   message.classList.remove("active");
   var digest = document.querySelector("#digest");
