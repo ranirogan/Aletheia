@@ -23,3 +23,7 @@ a{
 #sentiment{
   margin-top: 10px;
 }
+
+.card{
+  border-radius: 10px;
+}
