@@ -17,8 +17,8 @@ from flask_cors import CORS
 # python -m spacy download en_core_web_sm
 nlp = spacy.load("en_core_web_md")
 
-nltk.download('punkt')
-nltk.download('vader_lexicon')
+nltk.download("punkt")
+nltk.download("vader_lexicon")
 
 
 app = Flask(__name__)
@@ -38,36 +38,45 @@ def compute(url):
     score = sid.polarity_scores(text)
 
     parsed = nlp(text)
-    ents = [{'text': e.text, 'label': e.label_,
-             'count': text.count(e.text)} for e in parsed.ents if e.label_ != 'DATE' and e.label_ != 'CARDINAL']
-    ents = list({v['text']: v for v in ents}.values())
+    ents = [
+        {"text": e.text, "label": e.label_, "count": text.count(e.text)}
+        for e in parsed.ents
+        if e.label_ != "DATE"
+        and e.label_ != "CARDINAL"
+        and e.label_ != "MONEY"
+        and e.label_ != "TIME"
+    ]
+    ents = list({v["text"]: v for v in ents}.values())
 
     for ent in ents:
         base = "https://en.wikipedia.org/w/api.php?action=opensearch&search={}&limit=1&namespace=0&format=json".format(
-            ent['text'])
+            ent["text"]
+        )
         resp = requests.get(base)
         j = resp.json()
         if len(j[3]) > 0:
-            ent['wiki'] = j[3][0]
+            ent["wiki"] = j[3][0]
         else:
-            ent['wiki'] = ''
+            ent["wiki"] = ""
 
     url = "https://news.google.com/rss/search?q={}".format(
-        urllib.parse.quote_plus(article.title))
+        urllib.parse.quote_plus(article.title)
+    )
     feed = feedparser.parse(url)
     entries = feed.entries[1:11]
-    entries = [{'title': entry.title, 'url': entry.links[0].href}
-               for entry in entries]
+    entries = [
+        {"title": entry.title, "url": entry.links[0].href} for entry in entries
+    ]
 
     for entry in entries:
         try:
-            compare = Article(entry['url'])
+            compare = Article(entry["url"])
             compare.download()
             compare.parse()
             sid = SentimentIntensityAnalyzer()
-            entry['sediment'] = sid.polarity_scores(compare.text)
+            entry["sediment"] = sid.polarity_scores(compare.text)
         except:
-            print('Error getting article')
+            print("Error getting article")
 
     return jsonify(
         authors=article.authors,
@@ -77,11 +86,11 @@ def compute(url):
         summary=article.summary,
         sentiment=score,
         entities=ents,
-        similar=entries
+        similar=entries,
     )
 
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def news():
     for path in (TOP_DIRECTORY, MEMO_DIR, ANCHOR_DIRECTORY):
         try:
@@ -89,9 +98,9 @@ def news():
         except FileExistsError:
             pass
 
-    url = request.data.decode('utf-8')
+    url = request.data.decode("utf-8")
     return compute(url)
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
