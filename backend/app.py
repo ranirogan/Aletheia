@@ -44,6 +44,7 @@ def compute(url):
         if e.label_ != "DATE"
         and e.label_ != "CARDINAL"
         and e.label_ != "MONEY"
+        and e.label_ != "ORDINAL"
         and e.label_ != "TIME"
     ]
     ents = list({v["text"]: v for v in ents}.values())
