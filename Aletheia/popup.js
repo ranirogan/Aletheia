@@ -80,8 +80,10 @@ function getEntities(entities){
       a.innerText = ent.text + " (" + ent.label + ")";
       // a.innerText = ent.text;
       a.setAttribute("href", ent.wiki);
-      a.classList.add("list-group-item");
-      a.classList.add("list-group-item-action");
+      a.classList.add("badge");
+      a.classList.add("rounded-pill");
+      a.classList.add("bg-warning");
+      a.classList.add("mx-1");
       keyTerms.appendChild(a);
     }
   }
