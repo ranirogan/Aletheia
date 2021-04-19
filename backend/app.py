@@ -46,6 +46,9 @@ def compute(url):
         and e.label_ != "MONEY"
         and e.label_ != "ORDINAL"
         and e.label_ != "TIME"
+        and e.label_ != "QUANTITY"
+        and e.label_ != "PERCENT"
+
     ]
     ents = list({v["text"]: v for v in ents}.values())
 
