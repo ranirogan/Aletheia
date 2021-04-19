@@ -75,12 +75,15 @@ function getEntities(entities){
   for(var i = 0; i < entities.length; i++){
     var ent = entities[i];
     // sets up the link
-    var a = document.createElement("a");
-    a.innerHTML = ent.text;
-    a.setAttribute("href", ent.wiki);
-    a.classList.add("list-group-item");
-    a.classList.add("list-group-item-action");
-    keyTerms.appendChild(a);
+    if(ent.wiki != ""){
+      var a = document.createElement("a");
+      a.innerText = ent.text + " (" + ent.label + ")";
+      // a.innerText = ent.text;
+      a.setAttribute("href", ent.wiki);
+      a.classList.add("list-group-item");
+      a.classList.add("list-group-item-action");
+      keyTerms.appendChild(a);
+    }
   }
 }
 
