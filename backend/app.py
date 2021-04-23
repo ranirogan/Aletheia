@@ -1,3 +1,4 @@
+from flask_cors.core import parse_resources
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk import tokenize
 import nltk
@@ -28,7 +29,7 @@ nltk.download("vader_lexicon")
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/": {"origins": "*"}})
 
 
 @functools.lru_cache(maxsize=500)
