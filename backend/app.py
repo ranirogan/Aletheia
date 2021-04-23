@@ -17,6 +17,8 @@ from flask_cors import CORS
 from bs4 import BeautifulSoup
 from typing import Optional
 import logging
+import threading
+
 
 # Install using
 # python -m spacy download en_core_web_sm
@@ -108,6 +110,9 @@ def parse_ents(text: str, parsed):
         else:
             ent["wiki"] = ""
 
+    ents.sort(key=lambda x: x["count"], reverse=True)
+    ents = ents[0:14]
+
     return ents
 
 
@@ -122,18 +127,29 @@ def get_similar_articles(article):
     entries = feed.entries[1:11]
     entries = [{"title": entry.title, "url": entry.links[0].href} for entry in entries]
 
+    thread_list = []
     for entry in entries:
         try:
             # Grab these articles and check their sentiment
-            compare = Article(entry["url"])
-            compare.download()
-            compare.parse()
-            sid = SentimentIntensityAnalyzer()
-            entry["sediment"] = sid.polarity_scores(compare.text)
-            entry["source_bias"] = get_bias(compare.meta_site_name)
+            def get(entry):
+                compare = Article(entry["url"])
+                compare.download()
+                compare.parse()
+                sid = SentimentIntensityAnalyzer()
+                entry["sediment"] = sid.polarity_scores(compare.text)
+                entry["source_bias"] = get_bias(compare.meta_site_name)
+
+            thread = threading.Thread(target=get, args=(entry,))
+            thread_list.append(thread)
+
         except Exception as e:
             # Probably a scraping error, move on
             logging.error("Error getting similar article info {}".format(e))
+
+    for thread in thread_list:
+        thread.start()
+    for thread in thread_list:
+        thread.join()
 
     return entries
 
