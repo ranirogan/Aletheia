@@ -24,7 +24,9 @@ document.addEventListener('DOMContentLoaded', function(){
         body: url
         }).then(function(response) {
             return response.json().then(json => getVals(json))
-          });
+        }).catch(() => {
+          message.innerText="Network error. Please try again later";
+        })
       }
     }); 
   });
