@@ -44,6 +44,14 @@ function getVals(json){
   author.innerText = json.authors;
   if(json.authors == "")
     author.innerText = "No authors found.";
+  if(json.source_bias){
+    var biasSpot = document.getElementById("bias-spot");
+    biasSpot.innerText = json.source_bias;
+  }
+  else{
+    var bias = document.getElementById("bias");
+    bias.classList.add("d-none");
+  }
   var sum = document.getElementById("summary");
   sum.innerText = json.summary;
   // calculates sentiment and rating
