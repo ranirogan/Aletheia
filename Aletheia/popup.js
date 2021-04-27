@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
         message.innerText= "Cannot read from this page type. Please try again from a valid page.";
       else{
         let url = tabs[0].url;
-        fetch('http://ec2-18-144-60-190.us-west-1.compute.amazonaws.com:8080/', {
+        fetch('http://ec2-18-144-71-64.us-west-1.compute.amazonaws.com:8080/', {
         method: 'POST',
         body: url
         }).then(function(response) {
