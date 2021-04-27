@@ -34,7 +34,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/": {"origins": "*"}})
 
 
-@functools.lru_cache(maxsize=500)
+@functools.lru_cache(maxsize=20)
 def get_bias(source: str) -> Optional[str]:
     try:
         # Scrape the allsides website
@@ -83,7 +83,8 @@ def check_paths() -> None:
 def parse_ents(text: str, parsed):
     # Pull out special entities
 
-    banned = ["DATE", "CARDINAL", "MONEY", "ORDINAL", "TIME", "QUANTITY", "PERCENT"]
+    banned = ["DATE", "CARDINAL", "MONEY",
+              "ORDINAL", "TIME", "QUANTITY", "PERCENT"]
 
     ents = [
         {"text": e.text, "label": e.label_, "count": text.count(e.text)}
@@ -125,7 +126,8 @@ def get_similar_articles(article):
 
     # Take the next 10 articles
     entries = feed.entries[1:11]
-    entries = [{"title": entry.title, "url": entry.links[0].href} for entry in entries]
+    entries = [{"title": entry.title, "url": entry.links[0].href}
+               for entry in entries]
 
     thread_list = []
     for entry in entries:
@@ -154,7 +156,7 @@ def get_similar_articles(article):
     return entries
 
 
-@functools.lru_cache(maxsize=32)
+@functools.lru_cache(maxsize=10)
 def compute(url: str):
     check_paths()
 
