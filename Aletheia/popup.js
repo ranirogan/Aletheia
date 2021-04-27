@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
         message.innerText= "Cannot read from this page type. Please try again from a valid page.";
       else{
         let url = tabs[0].url;
-        fetch('http://ec2-18-144-60-190.us-west-1.compute.amazonaws.com:8080/', {
+        fetch('http://ec2-18-144-71-64.us-west-1.compute.amazonaws.com:8080/', {
         method: 'POST',
         body: url
         }).then(function(response) {
@@ -44,6 +44,14 @@ function getVals(json){
   author.innerText = json.authors;
   if(json.authors == "")
     author.innerText = "No authors found.";
+  if(json.source_bias){
+    var biasSpot = document.getElementById("bias-spot");
+    biasSpot.innerText = json.source_bias;
+  }
+  else{
+    var bias = document.getElementById("bias");
+    bias.classList.add("d-none");
+  }
   var sum = document.getElementById("summary");
   sum.innerText = json.summary;
   // calculates sentiment and rating
