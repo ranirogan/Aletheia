@@ -21,7 +21,7 @@ Responds to POST requests with a URL in the request body
 To install, run the following
 ```
  pip install -r requirements.txt
- python -m spacy download en_core_web_sm
+ python -m spacy download en_core_web_md
 ```
 To run the server, run the following
 ```

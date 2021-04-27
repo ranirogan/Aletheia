@@ -3,7 +3,6 @@ spacy==3.0.5
 Flask==1.1.2
 Flask_Cors==3.0.10
 requests==2.22.0
-newspaper3k==0.3.0
+git+https://github.com/codelucas/newspaper@master#egg=newspaper3k
 feedparser==6.0.2
 beautifulsoup4==4.9.3
-newspaper==0.1.0.7

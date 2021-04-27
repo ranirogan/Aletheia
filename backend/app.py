@@ -18,10 +18,13 @@ from bs4 import BeautifulSoup
 from typing import Optional
 import logging
 import threading
-
+import hashlib
+import os.path
+from os import path
+import pickle
 
 # Install using
-# python -m spacy download en_core_web_sm
+# python -m spacy download en_core_web_md
 # Load out spacy model
 nlp = spacy.load("en_core_web_md")
 
@@ -34,7 +37,6 @@ app = Flask(__name__)
 CORS(app, resources={r"/": {"origins": "*"}})
 
 
-@functools.lru_cache(maxsize=20)
 def get_bias(source: str) -> Optional[str]:
     try:
         # Scrape the allsides website
@@ -156,7 +158,6 @@ def get_similar_articles(article):
     return entries
 
 
-@functools.lru_cache(maxsize=10)
 def compute(url: str):
     check_paths()
 
@@ -183,24 +184,42 @@ def compute(url: str):
     ents = parse_ents(text, parsed)
     entries = get_similar_articles(article)
 
-    return jsonify(
-        authors=article.authors,
-        publish_date=article.publish_date,
-        title=article.title,
-        keywords=article.keywords,
-        summary=article.summary,
-        sentiment=score,
-        entities=ents,
-        similar=entries,
-        source_bias=get_bias(source),
-    )
+    return {
+        'authors': article.authors,
+        'publish_date': article.publish_date,
+        'title': article.title,
+        'keywords': article.keywords,
+        'summary': article.summary,
+        'sentiment': score,
+        'entities': ents,
+        'similar': entries,
+        'source_bias': get_bias(source),
+    }
 
 
 @app.route("/", methods=["POST"])
 def news():
     url = request.data.decode("utf-8")
-    logging.info("Got request for {}".format(url))
-    return compute(url)
+
+    hash = hashlib.sha256(request.data).hexdigest()
+
+    data = None
+    file = './cache/{}.pkl'.format(hash)
+
+    if path.exists(file):
+        logging.info("Cache hit for {}".format(url))
+        data = pickle.load(open(file, 'rb'))
+    else:
+        logging.error('No cache')
+        data = compute(url)
+
+        file = open(file, 'wb')
+        pickle.dump(data, file)
+        file.flush()
+        file.close()
+
+    data = jsonify(data)
+    return data
 
 
 if __name__ == "__main__":
